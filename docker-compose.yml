@@ -1,0 +1,8 @@
+version: '3.9' # optional since v1.27.0 
+services:
+  mongodb: # container name
+    image: 'mongo:latest' # container image
+    ports:
+      - '8081:8081' # container port
+    env_file:
+      - .env # container variables 
