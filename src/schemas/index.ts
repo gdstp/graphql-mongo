@@ -4,6 +4,7 @@ import User from './User';
 import TweetController from '../controllers/TweetController';
 import UserController from '../controllers/UserController';
 import SessionController from '../controllers/SessionController';
+import AuthMiddleware from '../middlewares/AuthMiddleware';
 
 const schema = async () =>
   await buildSchema({
@@ -14,6 +15,7 @@ const schema = async () =>
       UserController,
       SessionController,
     ],
+    authChecker: AuthMiddleware,
   });
 
 export default schema;

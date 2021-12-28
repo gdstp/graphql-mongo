@@ -3,6 +3,7 @@ import User from '../schemas/User';
 import MongoUser from '../database/schemas/User';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
+import auth from '../config/auth';
 
 @Resolver(User)
 class SessionController {
@@ -21,9 +22,9 @@ class SessionController {
       throw new Error('Password does not match');
     }
 
-    const token = jwt.sign({}, 'secret', {
+    const token = jwt.sign({}, auth.jwt.secret, {
       subject: user.id,
-      expiresIn: 7,
+      expiresIn: auth.jwt.expiresIn,
     });
 
     return token;
