@@ -11,6 +11,7 @@ class TweetController {
   }
 
   @Query((returns) => Tweet, { name: 'tweet' })
+  @Authorized()
   async findById(@Arg('id') id: string) {
     const tweet = await MongoTweet.findById(id);
     if (!tweet) {
@@ -20,6 +21,7 @@ class TweetController {
   }
 
   @Mutation((returns) => Tweet, { name: 'createTweet' })
+  @Authorized()
   async create(
     @Arg('author') author: string,
     @Arg('description') description: string
@@ -28,6 +30,7 @@ class TweetController {
   }
 
   @Mutation((returns) => Tweet)
+  @Authorized()
   async upvoteTweet(@Arg('id') id: string) {
     const tweet = await MongoTweet.findById(id);
     if (!tweet) {
@@ -41,6 +44,7 @@ class TweetController {
   }
 
   @Mutation((returns) => Tweet)
+  @Authorized()
   async downvoteTweet(@Arg('id') id: string) {
     const tweet = await MongoTweet.findById(id);
     if (!tweet) {
