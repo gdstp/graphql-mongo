@@ -28,12 +28,12 @@ const TweetSchema = new Schema<ITweetDocument>(
     },
     createdAt: {
       type: Date,
-      default: Date.now,
+      default: new Date(Date.now()),
       required: false,
     },
     updatedAt: {
       type: Date,
-      default: Date.now,
+      default: new Date(Date.now()),
       required: false,
     },
   },
